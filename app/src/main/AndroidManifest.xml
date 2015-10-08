@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.torerov.staggered" >
 
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/> //안드로이드 퍼미션
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -24,7 +26,16 @@
 
         <activity android:name=".OtherActivity" >
         </activity>
+
+        <receiver
+            android:name=".SMSReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter android:priority="1000">
+                <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+            </intent-filter>
+
+        </receiver>
     </application>
 
 </manifest>
-
